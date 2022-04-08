@@ -9,16 +9,20 @@ const Product = ({ dataProducts }) => {
   
   return (
     <div id="product">
-      <ProductContext.Provider value={{
-        activeProduct,
-        setActiveProduct,
-        activeDetailThumb,
-        setActiveDetailThumb,
-        dataProducts
-      }}>
-        <ProductList />
-        <Detail />
-      </ProductContext.Provider>
+      {
+        dataProducts.length > 0 ?
+          <ProductContext.Provider value={{
+            activeProduct,
+            setActiveProduct,
+            activeDetailThumb,
+            setActiveDetailThumb,
+            dataProducts
+          }}>
+            <ProductList />
+            <Detail />
+          </ProductContext.Provider>
+        : <h1 style={{ marginTop: 50, textAlign: 'center' }}>Empty Data!</h1>
+      }
     </div>
   )
 }

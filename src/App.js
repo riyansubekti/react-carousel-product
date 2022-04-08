@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Product from './pages/Product'
 import axios from 'axios'
 import { dataProducts } from './data'
 import './App.css'
 
 const App = () => {
+  const [getData, setGetData] = useState(dataProducts);
   
   // GET CORS from development
   useEffect(() => {
@@ -14,12 +15,12 @@ const App = () => {
         Authorization: `Bearer ${token}`
       }
     })
-      .then(res => console.log('dataProducts', res.data))
+      .then(res => setGetData(res.data))
       .catch(err => console.warn(err.message))
-  }, [])
+  }, [setGetData])
 
   return(
-    <Product dataProducts={dataProducts} />
+    <Product dataProducts={getData} />
   );
 }
 
